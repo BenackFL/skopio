@@ -5,7 +5,7 @@ using UnityEngine;
 public class cambiar_Personajes : MonoBehaviour {
 
 	// control de los gameobjects
-	public GameObject personaje1, personaje2;
+	public GameObject personaje1, personaje2, personaje3, personaje4, personaje5, personaje6, personaje7, personaje8, personaje9, personaje10;
 
 	// esta variable contiene cual personaje esta seleccionado y activo
 	int personajeActivo = 1;
@@ -15,6 +15,7 @@ public class cambiar_Personajes : MonoBehaviour {
 		// se activa el primer personaje y se desactivan los demas
 		personaje1.gameObject.SetActive (true);
 		personaje2.gameObject.SetActive (false);
+
 	}
 
 	// se cambian los personajes al presionar el boton
