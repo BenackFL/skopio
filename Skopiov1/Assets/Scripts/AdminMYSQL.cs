@@ -43,4 +43,13 @@ public class AdminMYSQL : MonoBehaviour {
         return Resultado;
         
     }
+
+    public MySqlDataReader Insert(string _insert)
+    {
+        MySqlCommand cmd = conexion.CreateCommand();
+        cmd.CommandText = "INSERT INTO " + _insert;
+        MySqlDataReader Resultado = cmd.ExecuteReader();
+        return Resultado;
+
+    }
 }
