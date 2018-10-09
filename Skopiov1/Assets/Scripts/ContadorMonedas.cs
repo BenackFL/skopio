@@ -24,6 +24,7 @@ public class ContadorMonedas : MonoBehaviour {
     //Text m_MyText;
 
     int rando1 = 0, rando2 = 0, rando3 = 0, rando4 = 0, rando5 = 0, respuesta = 0, rno1, rno2, rno3, rno4, rno5;
+
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Colision");
@@ -37,18 +38,32 @@ public class ContadorMonedas : MonoBehaviour {
         Debug.Log("Es " + auxi);
         if (auxi == respuesta.ToString())
         {
-            Debug.Log("Acerto");
+            Debug.Log("Acerto");//Imprimir en imagen o text el acierto
             m_Text.text = "";
-            
             m_Text2.text = "";
-            
             m_Text3.text = "";
-            
             m_Text5.text = "";
+            m_Text4.text = "";
+            contador_monedas++;
+            crearProblema();
+        }
             
+        else if(auxi == "")
+        {
+            Debug.Log("Jaja valor invisible");//Trucazo del magaso
+        }
+        else 
+        {
+
+            Debug.Log("Fallo");//Imprimir en imagen o text el fallo
+            m_Text.text = "";
+            m_Text2.text = "";
+            m_Text3.text = "";
+            m_Text5.text = "";
             m_Text4.text = "";
             crearProblema();
         }
+        
     }
 
     void Start () {
@@ -87,13 +102,9 @@ public class ContadorMonedas : MonoBehaviour {
 
         //Respuestas
         m_Text = Instantiate(m_Text);
-
         m_Text2 = Instantiate(m_Text2);
-
         m_Text3 = Instantiate(m_Text3);
-
         m_Text5 = Instantiate(m_Text5);
-
         m_Text4 = Instantiate(m_Text4);
 
         //Ciclo problemas
@@ -147,11 +158,12 @@ public class ContadorMonedas : MonoBehaviour {
         
 
         contador_problemas++;
-        if (contador_problemas == 2)
+        if (contador_problemas == 10)
         {//Terminar escena
             //SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex + 1);
+            SceneManager.LoadScene(4);
         }
-        changingText.text = "" + contador_problemas;
+        changingText.text = "" + contador_monedas;
 
 
 
