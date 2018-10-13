@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MySql.Data.MySqlClient;
 using UnityEngine.SceneManagement;
-public class ContadorMonedas : MonoBehaviour {
 
+public class ContadorMonedas : MonoBehaviour {
+    //Tiempo
+   
+    
+
+
+    public int id_usuario;
     public string auxi;
 
 
     public Text changingText;
     public Text problema;
+    public Text acierto;
     //public TextMeshPro PreFab;
 
     public TextMeshPro m_Text;
@@ -25,6 +33,20 @@ public class ContadorMonedas : MonoBehaviour {
 
     int rando1 = 0, rando2 = 0, rando3 = 0, rando4 = 0, rando5 = 0, respuesta = 0, rno1, rno2, rno3, rno4, rno5;
 
+    
+
+    public void ObtenerID()
+    {
+
+        
+        Debug.Log("El usuario es: " + id_usuario);
+        //UPDATE `usuarios` SET `monedas_usuario` = '1' WHERE `usuarios`.`Id_usuarios` = 1;
+        string _log = "`usuarios` SET `monedas_usuario` = '" + contador_monedas + "' WHERE `usuarios`.`Id_usuarios` = '"+id_usuario+"'";
+        AdminMYSQL _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
+        MySqlDataReader Resultado = _adminMYSQL.Actualiza(_log);
+
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Colision");
@@ -38,13 +60,18 @@ public class ContadorMonedas : MonoBehaviour {
         Debug.Log("Es " + auxi);
         if (auxi == respuesta.ToString())
         {
+            acierto.text = "Acertaste!";
             Debug.Log("Acerto");//Imprimir en imagen o text el acierto
+
             m_Text.text = "";
             m_Text2.text = "";
             m_Text3.text = "";
             m_Text5.text = "";
             m_Text4.text = "";
             contador_monedas++;
+            
+
+
             crearProblema();
         }
             
@@ -54,13 +81,15 @@ public class ContadorMonedas : MonoBehaviour {
         }
         else 
         {
-
+            acierto.text = "La respuesta era "+respuesta;
             Debug.Log("Fallo");//Imprimir en imagen o text el fallo
             m_Text.text = "";
             m_Text2.text = "";
             m_Text3.text = "";
             m_Text5.text = "";
             m_Text4.text = "";
+            
+
             crearProblema();
         }
         
@@ -69,7 +98,10 @@ public class ContadorMonedas : MonoBehaviour {
     void Start () {
         if (contador_problemas == 0)
         {
+            contador_monedas = ControladorCambio.monedas2;
+            id_usuario = ControladorCambio.id_usuario2;
             crearProblema();
+            
         }
     }
 	
@@ -161,6 +193,9 @@ public class ContadorMonedas : MonoBehaviour {
         if (contador_problemas == 10)
         {//Terminar escena
             //SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex + 1);
+            ControladorCambio.monedas2 = contador_monedas;
+            ObtenerID();
+            contador_problemas = 0;
             SceneManager.LoadScene(4);
         }
         changingText.text = "" + contador_monedas;

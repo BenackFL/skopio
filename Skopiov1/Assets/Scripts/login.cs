@@ -15,11 +15,16 @@ public class login : MonoBehaviour {
 
     public Text info;
 
+    public Text idEntorno;
+    public Text MonedasEntorno;
+
     public GameObject _registro;
     public GameObject _login;
 
-     
+    public int id_usuario;
+    public int monedas;
 
+    
     public void logear()
     {
         string _log = "`usuarios` WHERE `nombre_usuario` LIKE '"+usuariotxt.text + "' AND `pass_usuario` LIKE '" + contrasenatxt.text+"'";
@@ -30,14 +35,28 @@ public class login : MonoBehaviour {
         if (Resultado.HasRows)
         {
             Debug.Log("Login correcto");
+            //Obtener el ID para cuando se necesite en el transcurso de juego
+            Resultado.Read();
+            idEntorno.text = Resultado.GetInt32(0).ToString();
+
+            Debug.Log(""+idEntorno.text );
+            MonedasEntorno.text = Resultado.GetInt32(3).ToString();
+            Debug.Log("" + MonedasEntorno.text);
+            Resultado.Close();
+
+            ControladorCambio _cambio = GameObject.Find("ControladorCambio").GetComponent<ControladorCambio>();
+            _cambio.ActualizaDatosEntorno();
+
             SceneManager.LoadScene("Menu");
+            
         }
         else
         {
             //Debug.Log("Login incorrecto");
             info.text = "Datos incorrectos";
+            Resultado.Close();
         }
-        Resultado.Close();
+        
     }
 
     public void RegistrarNuevoUsuario()
@@ -76,11 +95,12 @@ public class login : MonoBehaviour {
 
 
                         Resultado.Close();
-                        _log = "`usuarios` (`Id_usuarios`, `nombre_usuario`, `pass_usuario`, `monedas_usuario`, `correo_usuario`) VALUES (NULL, '" + usuariotxt.text + "', '" + contrasenatxt.text + "', 0 , '" + correotxt.text + "')";
+                        _log = "`usuarios` (`Id_usuarios`, `nombre_usuario`, `pass_usuario`, `monedas_usuario`, `correo_usuario`,`personajes`,`puntaje`) VALUES (NULL, '" + usuariotxt.text + "', '" + contrasenatxt.text + "', 0 , '" + correotxt.text + "','"+0+"',0)";
                         Resultado = _adminMYSQL.Insert(_log);
                         //Debug.Log("El usuario se creo correctamente");
                         Resultado.Close();
                         AbrirCerrarRegistro();
+
                     }
                 }
             }

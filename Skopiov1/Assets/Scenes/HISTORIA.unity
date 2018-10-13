@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f731cfb2fd1cb44aa5d08d2634b6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monedas: {fileID: 1672521879}
 --- !u!1 &695923799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f731cfb2fd1cb44aa5d08d2634b6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monedas: {fileID: 1672521879}
 --- !u!1 &1835913823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd1cdf46bd2ae44aa48d9fec6e053c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monedas: {fileID: 1672521879}
 --- !u!4 &1851711866
 Transform:
   m_ObjectHideFlags: 0

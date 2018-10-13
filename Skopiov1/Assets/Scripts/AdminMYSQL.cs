@@ -52,4 +52,12 @@ public class AdminMYSQL : MonoBehaviour {
         return Resultado;
 
     }
+
+    public MySqlDataReader Actualiza(string _update)
+    {
+        MySqlCommand cmd = conexion.CreateCommand();
+        cmd.CommandText = "UPDATE " + _update;
+        MySqlDataReader Resultado = cmd.ExecuteReader();
+        return Resultado;
+    }
 }

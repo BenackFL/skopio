@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MySql.Data.MySqlClient;
+using UnityEngine.UI;
 
 public class Seleccionar_personaje : MonoBehaviour {
 
 	private GameObject[] lista_personajes;
 	private int index;
 
+    //abcdefghij
+    string comprados;
+    public int id_usuario;
+    public Text info;
+    public Text monedasInfo;
 	// Use this for initialization
 	private void Start()
 		{
-
-		index = PlayerPrefs.GetInt ("personaje_elegido");
+        id_usuario = ControladorCambio.id_usuario2;
+        index = PlayerPrefs.GetInt ("personaje_elegido");
 
 		lista_personajes = new GameObject[transform.childCount];
 
@@ -42,7 +49,8 @@ public class Seleccionar_personaje : MonoBehaviour {
 
 		//activar el nuevo modelo
 		lista_personajes[index].SetActive(true);
-	}
+        info.text = "";
+    }
 
 	public void botonDer()
 	{
@@ -56,17 +64,73 @@ public class Seleccionar_personaje : MonoBehaviour {
 
 		//activar el nuevo modelo
 		lista_personajes[index].SetActive(true);
-	}
+        info.text = "";
+    }
 
 	public void cambiar_escena()
 	{
-		PlayerPrefs.SetInt("personaje_elegido", index);
-		SceneManager.LoadScene("HISTORIA");
+
+        string _log = "`usuarios` WHERE `Id_usuarios` LIKE '" + id_usuario + "'";
+        AdminMYSQL _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
+        MySqlDataReader Resultado = _adminMYSQL.Select(_log);
+        Resultado.Read();
+        comprados = Resultado.GetString(6);
+        Resultado.Close();
+
+        if (comprados.Contains(index.ToString()))
+        {
+            PlayerPrefs.SetInt("personaje_elegido", index);
+            SceneManager.LoadScene("HISTORIA");
+        }
+        else
+        {
+            info.text = "Comprame :) !";
+        }
 	}
 
-		
-	// Update is called once per frame
-	void Update () {
-		
+    public void comprar()
+    {
+
+        if (ControladorCambio.monedas2 >= 5)
+        {
+
+            string _log = "`usuarios` WHERE `Id_usuarios` LIKE '" + id_usuario + "'";
+            AdminMYSQL _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
+            MySqlDataReader Resultado = _adminMYSQL.Select(_log);
+            Resultado.Read();
+            comprados = Resultado.GetString(6);
+            Resultado.Close();
+            if (comprados.Contains(index.ToString()))
+            {
+                //Debug.Log("Ya existe este correo");
+                info.text = "Ya tienes este personaje";
+
+            }
+            else
+            {
+                ControladorCambio.monedas2 = ControladorCambio.monedas2 - 5;
+                comprados = ""+comprados + index.ToString();
+                _log = "`usuarios` SET `personajes` = '" + comprados + "' WHERE `usuarios`.`Id_usuarios` = '" + id_usuario + "'";
+                
+                _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
+                Resultado = _adminMYSQL.Actualiza(_log);
+                Resultado.Close();
+
+                _log = "`usuarios` SET `monedas_usuario` = '" + ControladorCambio.monedas2 + "' WHERE `usuarios`.`Id_usuarios` = '" + id_usuario + "'";
+                
+                _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
+                Resultado = _adminMYSQL.Actualiza(_log);
+                Resultado.Close();
+                monedasInfo.text = ControladorCambio.monedas2.ToString();
+                info.text = "Compraste este personaje :)";
+                
+
+            }
+
+        }
+        else
+        {
+            info.text = "No tienes suficientes monedas";
+        }
 	}
 }

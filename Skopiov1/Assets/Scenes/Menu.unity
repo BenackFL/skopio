@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 1382906457}
   - component: {fileID: 1382906456}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Monedas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f731cfb2fd1cb44aa5d08d2634b6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monedas: {fileID: 1382906456}
 --- !u!4 &2017329566
 Transform:
   m_ObjectHideFlags: 0
