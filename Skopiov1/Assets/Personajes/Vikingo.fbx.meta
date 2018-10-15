@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aad24cf11e1905e4fad8379de87b585f
+guid: 25dbf8bf2b6e26b43875b5b2ce0bff41
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,8 +16,9 @@ ModelImporter:
     100020: back_R
     100022: back_R.001
     100024: back_R.001_end
-    100026: Cube.004
-    100028: //RootNode
+    100026: BezierCurve.001
+    100028: Cube.004
+    100030: //RootNode
     400000: arm
     400002: arm.001
     400004: arm.001_end
@@ -31,17 +32,22 @@ ModelImporter:
     400020: back_R
     400022: back_R.001
     400024: back_R.001_end
-    400026: Cube.004
-    400028: //RootNode
-    2100000: jeans
-    2100002: shoe
-    2100004: madera
-    2100006: skin
-    2100008: t-sh
-    2100010: black
-    2100012: Material.001
-    2100014: bigo
-    4300000: Cube.004
+    400026: BezierCurve.001
+    400028: Cube.004
+    400030: //RootNode
+    2100000: horn
+    2100002: Material.001
+    2100004: jeans
+    2100006: shoe
+    2100008: madera
+    2100010: skin
+    2100012: t-sh
+    2100014: black
+    2100016: bigo
+    2300000: BezierCurve.001
+    3300000: BezierCurve.001
+    4300000: BezierCurve.001
+    4300002: Cube.004
     9500000: //RootNode
     13700000: Cube.004
     2186277476908879412: ImportLogs
