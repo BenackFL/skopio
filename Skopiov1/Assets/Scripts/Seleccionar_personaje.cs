@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using UnityEngine.UI;
 
 public class Seleccionar_personaje : MonoBehaviour {
@@ -11,14 +11,14 @@ public class Seleccionar_personaje : MonoBehaviour {
 	private int index;
 
     //abcdefghij
-    string comprados;
-    public int id_usuario;
-    public Text info;
-    public Text monedasInfo;
+    //string comprados;
+    //public int id_usuario;
+    //public Text info;
+    //public Text monedasInfo;
 	// Use this for initialization
 	private void Start()
 		{
-        id_usuario = ControladorCambio.id_usuario2;
+        //id_usuario = ControladorCambio.id_usuario2;
         index = PlayerPrefs.GetInt ("personaje_elegido");
 
 		lista_personajes = new GameObject[transform.childCount];
@@ -49,7 +49,7 @@ public class Seleccionar_personaje : MonoBehaviour {
 
 		//activar el nuevo modelo
 		lista_personajes[index].SetActive(true);
-        info.text = "";
+        //info.text = "";
     }
 
 	public void botonDer()
@@ -64,13 +64,13 @@ public class Seleccionar_personaje : MonoBehaviour {
 
 		//activar el nuevo modelo
 		lista_personajes[index].SetActive(true);
-        info.text = "";
+        //info.text = "";
     }
 
 	public void cambiar_escena()
 	{
 
-        string _log = "`usuarios` WHERE `Id_usuarios` LIKE '" + id_usuario + "'";
+        /*string _log = "`usuarios` WHERE `Id_usuarios` LIKE '" + id_usuario + "'";
         AdminMYSQL _adminMYSQL = GameObject.Find("AdministradorBaseDatos").GetComponent<AdminMYSQL>();
         MySqlDataReader Resultado = _adminMYSQL.Select(_log);
         Resultado.Read();
@@ -78,10 +78,10 @@ public class Seleccionar_personaje : MonoBehaviour {
         Resultado.Close();
 
         if (comprados.Contains(index.ToString()))
-        {
+        {*/
             PlayerPrefs.SetInt("personaje_elegido", index);
             SceneManager.LoadScene("HISTORIA");
-        }
+       /* }
         else
         {
             info.text = "Comprame :) !";
@@ -131,6 +131,6 @@ public class Seleccionar_personaje : MonoBehaviour {
         else
         {
             info.text = "No tienes suficientes monedas";
-        }
+        }*/
 	}
 }

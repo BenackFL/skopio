@@ -1234,9 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4921e81392c4f4293ed3fe0dccf164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id_usuario: 0
-  info: {fileID: 0}
-  monedasInfo: {fileID: 0}
 --- !u!1 &238067766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2091,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 487496871}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6731146ce7db70a48a299561c6faa8f4, type: 3}
   m_Name: 
