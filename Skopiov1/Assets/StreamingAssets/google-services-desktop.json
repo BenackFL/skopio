@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "712374942283",
+    "firebase_url": "https://skopio-640b0.firebaseio.com",
+    "project_id": "skopio-640b0",
+    "storage_bucket": "skopio-640b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712374942283:android:55940b7bb73c1162",
+        "android_client_info": {
+          "package_name": "com.AF.Skopiov1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712374942283-chlik5dnmp5er5pa8vnah5irf39p10og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFIYJvZ2FmnzH09ESADBM9mfraK_SELm8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
