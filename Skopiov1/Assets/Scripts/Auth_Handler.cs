@@ -18,17 +18,18 @@ namespace Firebase.Sample.Auth {
   using System.Threading.Tasks;
   using UnityEngine.UI;
   using UnityEngine;
+  using UnityEngine.SceneManagement;
 
 
-  // Handler for UI buttons on the scene.  Also performs some
-  // necessary setup (initializing the firebase app, etc) on
-  // startup.
-  public class Auth_Handler : MonoBehaviour {
+    // Handler for UI buttons on the scene.  Also performs some
+    // necessary setup (initializing the firebase app, etc) on
+    // startup.
+    public class Auth_Handler : MonoBehaviour {
 
         public Text emailText;
         public Text passwordText;
 
-    protected Firebase.Auth.FirebaseAuth auth;
+        protected Firebase.Auth.FirebaseAuth auth;
     protected Dictionary<string, Firebase.Auth.FirebaseUser> userByAuth =
       new Dictionary<string, Firebase.Auth.FirebaseUser>();
 
@@ -146,6 +147,7 @@ namespace Firebase.Sample.Auth {
                 auth.SignInAndRetrieveDataWithCredentialAsync(
                   Firebase.Auth.EmailAuthProvider.GetCredential(email, password)).ContinueWith(
                     HandleSignInWithSignInResult);
+
             }
             else
             {
@@ -166,6 +168,7 @@ namespace Firebase.Sample.Auth {
                 return auth.SignInAndRetrieveDataWithCredentialAsync(
                   Firebase.Auth.EmailAuthProvider.GetCredential(email, password)).ContinueWith(
                     HandleSignInWithSignInResult);
+
             }
             else
             {
@@ -192,6 +195,7 @@ namespace Firebase.Sample.Auth {
             if (LogTaskCompletion(task, "Sign-in"))
             {
                 DisplaySignInResult(task.Result, 1);
+               // SceneManager.LoadScene(loadLevel);
             }
         }
 
